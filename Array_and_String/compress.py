@@ -39,8 +39,8 @@ def compress(s):
   return res
 
 
-solution
-using two pointers
+# solution
+# using two pointers
 def compress(s):
   s += '!'
   result = []

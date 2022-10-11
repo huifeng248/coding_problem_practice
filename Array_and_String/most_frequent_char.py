@@ -44,10 +44,10 @@ def most_frequent_char(s):
     if best is None or count[char] > count[best]:
       best = char
   return best
-n = length of string
-Time: O(n)
-Space: O(n)
-using a hashmap (Counter)
+# n = length of string
+# Time: O(n)
+# Space: O(n)
+# using a hashmap (Counter)
 from collections import Counter
 
 def most_frequent_char(s):
@@ -57,6 +57,6 @@ def most_frequent_char(s):
     if best is None or count[char] > count[best]:
       best = char
   return best
-n = length of string
-Time: O(n)
-Space: O(n)
+# n = length of string
+# Time: O(n)
+# Space: O(n)
