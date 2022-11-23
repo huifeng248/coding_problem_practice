@@ -41,3 +41,26 @@ def anagrams(s1, s2):
 print(anagrams('restful', 'fluster'))
 
 
+def anagrams(s1, s2):
+  obj_1 = obj_convert(s1)
+  obj_2 = obj_convert(s2)
+  
+  return obj_2 == obj_1
+  
+  
+  
+def obj_convert(s1):
+  obj1 = {}
+  for i in s1:
+    if i not in obj1:
+      obj1[i] = 1
+    else:
+      obj1[i] += 1
+  return obj1
+
+# if there is no key, key error is raise. which is diff from js
+print(obj_convert("fluster"))
+
+print(anagrams('restful', 'fluster'))
+
+
