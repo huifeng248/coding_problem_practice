@@ -32,11 +32,8 @@ def anagrams(s1, s2):
   
   arr1.sort()
   arr2.sort()
-
-  if (arr1 == arr2):
-    return True
-  else:
-    return False
+  
+  return arr1 ==arr2
 
 print(anagrams('restful', 'fluster'))
 
@@ -64,3 +61,10 @@ print(obj_convert("fluster"))
 print(anagrams('restful', 'fluster'))
 
 
+from collections import Counter
+
+def anagrams(a1, a2):
+  return Counter(a1) == Counter(a2)
+
+# //Counter can convert a string into a dict
+# dict can be compared directly
