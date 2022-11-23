@@ -12,6 +12,7 @@ def most_frequent_char(s):
   max = float('-inf')
   value = ''
   
+  
 #   need to use s instead of obj, cause need to keep the sequence 
   for key in s:
     if dict[key] > max:
