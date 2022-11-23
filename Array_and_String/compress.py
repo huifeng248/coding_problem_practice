@@ -61,6 +61,8 @@ def compress(s):
   return ''.join(result)
 
 
+
+
 # n = length of string
 # Time: O(n)
 # Space: O(n)
