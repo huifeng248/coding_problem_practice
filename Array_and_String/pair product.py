@@ -23,8 +23,25 @@ def pair_product(numbers, target_product):
   object = {}
   
   for index, num in enumerate(numbers):
-    diff = int(target_product/num)
+    diff = target_product/num
     if diff in object:
       return (object[diff], index)
     else: 
       object[num] = index
+      
+
+# solution
+# using a hashmap (dictionary)
+def pair_product(numbers, target_product):
+  previous_nums = {}
+  
+  for index, num in enumerate(numbers):
+    complement = target_product / num
+    
+    if complement in previous_nums:
+      return (index, previous_nums[complement])
+    
+    previous_nums[num] = index
+n = length of numbers list
+Time: O(n)
+Space: O(n)
