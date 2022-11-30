@@ -71,4 +71,31 @@ def fill_values(head, values):
     return 
   
   values.append(head.val)
-  fill_values(head.next, values)
+  return fill_values(head.next, values)
+
+# solutions
+# iterative
+def linked_list_values(head):
+  values = []
+  current = head
+  while current is not None:
+    values.append(current.val)
+    current = current.next
+  return values
+# n = number of nodes
+# Time: O(n)
+# Space: O(n)
+# recursive
+def linked_list_values(head):
+  values = []
+  _linked_list_values(head, values)
+  return values
+
+def _linked_list_values(head, values):
+  if head is None:
+    return
+  values.append(head.val)
+  _linked_list_values(head.next, values)
+# n = number of nodes
+# Time: O(n)
+# Space: O(n)
