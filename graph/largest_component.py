@@ -1,8 +1,11 @@
+#  this one is tricky, look at the print for explaination
+
 def largest_component(graph):
   max_size = 0
-  
+  visited = set()
   for node in graph:
-    size = find_size(graph, node, visited = set())
+    size = find_size(graph, node, visited)
+    print("node:", node, "----", "size:",size)
     if size > max_size:
       max_size = size
   return max_size
@@ -10,25 +13,51 @@ def largest_component(graph):
 def find_size(graph, node, visited):
   size = 0
   if node in visited:
-    return 0
-#   if not in the visited, need to add to visited
+    print("node in visited:", node, "size", size)
+    return size
+  
   visited.add(node)
+  
   size = 1
+  print("in the loop of each node:", node, "size:", size)
   for neighbor in graph[node]:
-    # size += 1
-    # print("neighbor:",neighbor,  "size:", size)
-    size = find_size(graph, neighbor, visited) + size
-  return size
+    size += find_size(graph, neighbor, visited) 
     
-largest_component({
-  0: [ 1, 5],
+  return size 
+  
+  
+  
+
+# def largest_component(graph):
+#   max_size = 0
+  
+#   for node in graph:
+#     size = find_size(graph, node, visited = set())
+#     if size > max_size:
+#       max_size = size
+#   return max_size
+
+# def find_size(graph, node, visited):
+#   size = 0
+#   if node in visited:
+#     return 0
+# #   if not in the visited, need to add to visited
+#   visited.add(node)
+#   size = 1
+#   for neighbor in graph[node]:
+#     size = find_size(graph, neighbor, visited) + size
+#   return size
+    
+print(largest_component({
+  0: [8, 1, 5],
   1: [0],
-  5: [0],
-  # 8: [0, 5],
-  # 2: [3, 4],
-  # 3: [2, 4],
-  # 4: [3, 2]
-}) # -> 4
+  5: [0, 8],
+  8: [0, 5],
+  2: [3, 4],
+  3: [2, 4],
+  4: [3, 2]
+})) # -> 4
+
 
 # solutions
 # depth first
