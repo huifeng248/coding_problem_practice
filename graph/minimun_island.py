@@ -31,48 +31,80 @@
 #   size += calculate_island_size(grid, r, c-1, visited)
   
 #   return size
-from collections import deque 
 
+# BFS
+# from collections import deque 
+# def minimum_island(grid):
+#   smallest = float("+inf")
+#   visited = set()
+#   for r in range(len(grid)):
+#     for c in range(len(grid[r])):
+#       if grid[r][c] == 'L' and (r, c) not in visited:
+#         size = calculate_island_size(grid, r, c, visited)
+#         smallest = min(smallest, size)
+#   return smallest
 
+# def calculate_island_size(grid, r, c, visited):
+#   queue = deque()
+#   queue.append((r, c))
+  
+#   size = 0
+#   dirs = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+#   while queue:
+#     print(queue)
+#     cur = queue.popleft()
+#     if cur in visited:
+#       continue
+
+#     size += 1
+#     visited.add(cur)
+#     for d in dirs:      
+#       n_r, n_c = cur[0] + d[0], cur[1] + d[1] 
+      
+#       if n_r < 0 or n_r >= len(grid):
+#         continue
+#       if n_c < 0 or n_c >= len(grid[0]):
+#         continue
+#       if grid[n_r][n_c] == 'W':
+#         continue
+      
+#       queue.append((n_r, n_c))
+  
+#   return size
+# DFS
 def minimum_island(grid):
-  smallest = float("+inf")
   visited = set()
+  smallest = float('+inf')
   for r in range(len(grid)):
     for c in range(len(grid[r])):
-      if grid[r][c] == 'L' and (r, c) not in visited:
-        size = calculate_island_size(grid, r, c, visited)
-        smallest = min(smallest, size)
+      size = calculate_island_size(grid, r, c, visited)
+      # print(size)
+      if size != 0 and size < smallest:
+        smallest = size
   return smallest
 
 def calculate_island_size(grid, r, c, visited):
-  queue = deque()
-  queue.append((r, c))
-  
   size = 0
-  dirs = [(0, 1), (1, 0), (0, -1), (-1, 0)]
-  while queue:
-    print(queue)
-    cur = queue.popleft()
-    if cur in visited:
+  stack = [(r, c)]
+  directions = [(0,1), (0,-1), (1, 0), (-1, 0)]
+  while stack:
+    row, column = stack.pop()
+    if (row, column) in visited:
       continue
-
+    
+    if grid[row][column] == "W":
+      continue
+    
+    visited.add((row, column))
     size += 1
-    visited.add(cur)
-    for d in dirs:      
-      n_r, n_c = cur[0] + d[0], cur[1] + d[1] 
-      
-      if n_r < 0 or n_r >= len(grid):
-        continue
-      if n_c < 0 or n_c >= len(grid[0]):
-        continue
-      if grid[n_r][n_c] == 'W':
-        continue
-      
-      queue.append((n_r, n_c))
-  
+    for point in directions:
+      node_row, node_column = row + point[0], column+ point[1]
+      if node_row >=0 and node_row <len(grid) and node_column >= 0 and node_column < len(grid[row]):
+        stack.append((node_row, node_column))
   return size
-
-
+    
+    
+  
 grid = [
   ['L', 'L', 'L'],
   ['L', 'L', 'L'],
@@ -81,85 +113,3 @@ grid = [
 
 print(minimum_island(grid)) # -> 2)
 
-
-# solutions
-# depth first
-def minimum_island(grid):
-  visited = set()
-  min_size = float("inf")
-  for r in range(len(grid)):
-    for c in range(len(grid[0])):
-      size = explore_size(grid, r, c, visited)
-      if size > 0 and size < min_size:
-        min_size = size
-  return min_size
-
-def explore_size(grid, r, c, visited):
-  row_inbounds = 0 <= r < len(grid)
-  col_inbounds = 0 <= c < len(grid[0])
-  if not row_inbounds or not col_inbounds:
-    return 0
-  
-  if grid[r][c] == 'W':
-    return 0
-  
-  pos = (r, c)
-  if pos in visited:
-    return 0
-  visited.add(pos)
-  
-  size = 1
-  size += explore_size(grid, r - 1, c, visited)
-  size += explore_size(grid, r + 1, c, visited)  
-  size += explore_size(grid, r, c - 1, visited)
-  size += explore_size(grid, r, c + 1, visited)
-  return size
-# r = number of rows
-# c = number of columns
-# Time: O(rc)
-# Space: O(rc)
-
-
-# minimum island
-# Write a function, minimum_island, that takes in a grid containing Ws and Ls. W represents water and L represents land. The function should return the size of the smallest island. An island is a vertically or horizontally connected region of land.
-
-# You may assume that the grid contains at least one island.
-
-# test_00:
-grid = [
-  ['W', 'L', 'W', 'W', 'W'],
-  ['W', 'L', 'W', 'W', 'W'],
-  ['W', 'W', 'W', 'L', 'W'],
-  ['W', 'W', 'L', 'L', 'W'],
-  ['L', 'W', 'W', 'L', 'L'],
-  ['L', 'L', 'W', 'W', 'W'],
-]
-
-minimum_island(grid) # -> 2
-# test_01:
-grid = [
-  ['L', 'W', 'W', 'L', 'W'],
-  ['L', 'W', 'W', 'L', 'L'],
-  ['W', 'L', 'W', 'L', 'W'],
-  ['W', 'W', 'W', 'W', 'W'],
-  ['W', 'W', 'L', 'L', 'L'],
-]
-
-minimum_island(grid) # -> 1
-# test_02:
-grid = [
-  ['L', 'L', 'L'],
-  ['L', 'L', 'L'],
-  ['L', 'L', 'L'],
-]
-
-minimum_island(grid) # -> 9
-# test_03:
-grid = [
-  ['W', 'W'],
-  ['L', 'L'],
-  ['W', 'W'],
-  ['W', 'L']
-]
-
-minimum_island(grid) # -> 1
