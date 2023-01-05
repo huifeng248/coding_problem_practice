@@ -34,7 +34,7 @@ def find_bridge(main_island, grid):
     current, level = queue.popleft()
     row, column = current
     
-    
+    # the most tricky part: [row. column] not in main_island, instead of visited
     if (row, column) not in visited and [row, column] not in main_island and grid[row][column] =="L":
       return level - 1
     visited.add((row, column))
