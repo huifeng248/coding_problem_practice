@@ -34,33 +34,33 @@ def find_max_length(node, graph, distance):
   return res
 
 # recursive
-# def longest_path(graph):
+def longest_path(graph):
 
-#   distance = {}
-#   for node in graph:
-#     if len(graph[node])== 0:
-#       distance[node] = 0
+  distance = {}
+  for node in graph:
+    if len(graph[node])== 0:
+      distance[node] = 0
     
-#   for node in graph:
-#     find_longest(graph, node, distance)
+  for node in graph:
+    find_longest(graph, node, distance)
   
-#   return max(distance.values())
+  return max(distance.values())
       
-# def find_longest(graph, node, distance):
-#   max_step = 0
-#   if node in distance:
-#     return distance[node]
+def find_longest(graph, node, distance):
+  max_step = 0
+  if node in distance:
+    return distance[node]
   
-#   step = 0
-#   for neighbor in graph[node]:
-# #     this is the meat, we need to calculate the step for the neighbor, 
-# # which is one step away
-#     step = find_longest(graph, neighbor, distance) + 1
-# #   need to get the largest step from the neighbor and store it.
-#     max_step = max(step, max_step)
+  step = 0
+  for neighbor in graph[node]:
+#     this is the meat, we need to calculate the step for the neighbor, 
+# which is one step away
+    step = find_longest(graph, neighbor, distance) + 1
+#   need to get the largest step from the neighbor and store it.
+    max_step = max(step, max_step)
     
-#   distance[node] = max_step
-#   return distance[node]
+  distance[node] = max_step
+  return distance[node]
     
   
 
