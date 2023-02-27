@@ -24,3 +24,7 @@ class Solution:
             else:
                 currnt_b = currnt_b.next
         return None
+
+
+# time complexity 0(M+N)
+# space complexity O(M)
