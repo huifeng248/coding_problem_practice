@@ -3,6 +3,22 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+# first solution: O(n) time and O(n) space
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        if not head or not head.next:
+            return True
+        
+        arr = []
+        current = head
+        while current:
+            arr.append(current.val)
+            current = current.next
+        reversed_arr = arr[::-1]
+        return arr == reversed_arr
+
+
+# optimize solution: O(n) time and O(1) space
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         if not head or not head.next:
@@ -21,7 +37,6 @@ class Solution:
         slow.next = None
 
         reversed_second = self.reversed_list(temp)
-        # print("reversed_second", reversed_second)
         return self.compare(head, reversed_second)
 
     def compare(self, head, second):
