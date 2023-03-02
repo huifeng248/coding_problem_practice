@@ -19,3 +19,15 @@ class Solution:
             else:
                 res.append([cur_start, cur_end])
         return True
+
+class Solution:
+    def canAttendMeetings(self, intervals: List[List[int]]) -> bool:
+        intervals.sort()
+        for i in range(len(intervals) - 1):
+            if intervals[i][1] > intervals[i + 1][0]:
+                return False
+        return True
+
+    # time complexity O(nlog(n))
+    # space complexity O(n) the optimize can be O(1)
+
