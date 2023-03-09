@@ -36,3 +36,7 @@ p = 7
 
 s = Solution()
 print(s.minSubarray(nums, p))
+
+
+# time complexity is O(N), where N is the length of the input list nums.
+# space complexity is O(p), which is the size of the seen dictionary. In the worst case, if all the prefix sums have distinct values, the dictionary will contain p key-value pairs.
