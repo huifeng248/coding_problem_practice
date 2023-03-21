@@ -68,6 +68,7 @@ def combine(sorted_interval):
 # sort and combine
 def combine_intervals(intervals):
   sorted_intervals = sorted(intervals, key=lambda x : x[0])
+  # >>> sorted_list = sorted(sample_list, key=lambda nested: (nested[0],-nested[1]), reverse=True)
   combined = [ sorted_intervals[0] ]
   
   for current_interval in sorted_intervals[1:]:

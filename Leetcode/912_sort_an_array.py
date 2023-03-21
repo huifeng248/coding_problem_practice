@@ -29,7 +29,8 @@ class Solution:
         return res
         
 # time complexity: O(nlog(n))
-# spece complexity: tbd
+# The time complexity of the given code is O(nlog(n)) because the merge sort algorithm is used to sort the input array. Merge sort has a time complexity of O(nlog(n)) in the worst-case scenario.
+# The space complexity of the code is O(n) because the merge function creates two deques to store the left and right sub-arrays, each with a maximum size of n/2 elements. Additionally, the res list created to store the sorted result has a maximum size of n elements. Therefore, the total space complexity is O(n) due to the use of these data structures in the merge function.
 
 
         
