@@ -42,6 +42,22 @@ class Solution:
 # optimize sliding window using harsh table
 
 
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        l = 0
+        counter = {}
+        res = 0
+        for r in range(len(s)):
+            counter[s[r]] = counter.get(s[r], 0) + 1
+            #instead of using if, it should be while, cause we need to keep shrink the window until the deplicative is excluded. 
+            while counter[s[r]] > 1:
+                counter[s[l]] -= 1
+                l += 1
+            res = max(r - l+1, res)
+        return res
+
+
+
 
 
 
