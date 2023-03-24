@@ -1,4 +1,7 @@
 class Solution:
+    # think of this like the wave
+    # as long as the right is greater then left, keep increase the righ and update res for max
+    # if left is greater and right. move left to right, cause we need to start another cycle for increase the right, and mark the res again. 
     def maxProfit(self, prices: List[int]) -> int:
         buy_i = 0
         diff = 0
