@@ -1,3 +1,28 @@
+# dynamic programming depth
+
+class Solution:
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        m, n = len(grid), len(grid[0])
+        #first col
+        for i in range(1, m, 1):
+            grid[i][0] += grid[i-1][0]
+        # first row
+        for i in range(1, n, 1):
+            grid[0][i] += grid[0][i-1]
+        
+        for i in range(1, m, 1):
+            for j in range(1, n, 1):
+                right = grid[i][j-1]
+                down = grid[i-1][j]
+                grid[i][j] += min(right, down)
+        
+        return grid[m-1][n-1]
+
+# time complexity: O(mn)
+# space complexity:O(1)
+
+
+# recusion 
 class Solution:
     def minPathSum(self, grid: List[List[int]]) -> int:
         if not grid or not grid[0]:
