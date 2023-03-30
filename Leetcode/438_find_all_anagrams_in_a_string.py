@@ -1,33 +1,31 @@
 from collections import Counter, defaultdict
 
 # sliding window with harsh map
+# we keep increase the window size until P, and compare the two Counter
+# when greater then P, we need to move left+1, and update the Counter_s and re-compare. 
+# continue this process untill r reach the end.
+
 
 class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
-        if len(s) < len(p):
-            return []
-        res = []
-        p_counter = Counter(p)
-        s_counter = Counter()
+        counter_p = Counter(p)
+        counter_s = Counter()
         i = 0
-
-#because of sliding window, need to go to the end. 
+        left = 0
+        res = []
         for i in range(len(s)):
-            s_counter[s[i]] += 1
+            if i < len(p):
+                counter_s[s[i]]+=1
+            else:
+                counter_s[s[left]]-= 1
+                counter_s[s[i]]+=1
+                if counter_s[s[left]] == 0:
+                    del counter_s[s[left]]
+                left += 1
             
-            if i >= len(p):
-                #remove the left pointer
-                s_counter[s[i-len(p)]] -= 1
-                if s_counter[s[i-len(p)]] == 0:
-                    del s_counter[s[i-len(p)]]
-            # after the excluding the left, and adding the right, compare the array
-            
-            # print(s_counter, p_counter, s_counter == p_counter)
-            if s_counter == p_counter:
-                res.append(i - len(p)+1)
-                print(res)
-            
-        return res 
+            if counter_p == counter_s:
+                res.append(left)
+        return res
 
 # time complexity: O(N) N is the length of s
 # space complexity: O(1) becase of limited 26 letters
