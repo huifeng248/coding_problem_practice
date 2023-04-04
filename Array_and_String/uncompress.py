@@ -60,3 +60,21 @@ def uncompress(s):
 # m = max num found in any group
 # Time: O(n*m)
 # Space: O(n*m)
+
+
+def uncompress(s):
+  res = ""
+  cur_num = 0
+  cur_letter = ""
+  for char in s:
+    cur_letter = ""
+    if char.isdigit():
+      cur_num = cur_num * 10 + int(char)
+    if char.isalpha():
+      cur_letter += char
+      res += (int(cur_num) * cur_letter)
+      cur_num = 0
+  return res
+
+# time complexity: O(n)
+# space complexity: O(n)
