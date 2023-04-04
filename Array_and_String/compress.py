@@ -19,6 +19,30 @@
 # # -> '127y'
 
 
+# the key is add a special character at the end of "s".
+def compress(s):
+  s += "$"
+  res = ""
+  left = 0
+  right = 0
+  while right < len(s):
+    if s[right] == s[left]:
+      right += 1
+
+    else:
+      if right-left == 1:
+        res += s[left]
+      else:
+        res += str(right-left)
+        res += s[left]
+      left = right
+      right += 1
+      
+  # print(left, right, len(s))
+
+  # time complexity: O(n)
+  # space complexity: O(n)
+
 def compress(s):
   s += "#"
   res = ''
