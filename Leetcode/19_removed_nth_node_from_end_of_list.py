@@ -27,7 +27,31 @@ class Solution:
 # space complexity:O(1)
         
         
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+
+        dummy_head = ListNode(None)
+        dummy_head.next = head
+        fast= slow = head
+        for i in range(n):
+            fast = fast.next 
+        # fast is None, means n == lengh of linked list. just return head.next 
+        if not fast: 
+            return head.next
+        while fast and fast.next:
+            fast = fast.next
+            slow = slow.next
         
+        if slow.next:
+            slow.next = slow.next.next
+        else:
+            slow.next = None
+
+        return dummy_head.next
 
 
 
+# time complexity: O(n)
+
+# space complexity:O(1)
+        
