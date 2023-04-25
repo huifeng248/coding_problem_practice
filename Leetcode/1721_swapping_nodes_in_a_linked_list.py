@@ -38,22 +38,64 @@
 
 # using two pointers
 
+# one pass
+# class Solution:
+#     def swapNodes(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+#         count = 1
+#         start = end = ListNode(None)
+#         current = head
+#         while current:
+#             if end.val != None: end = end.next
+#             if count == k:
+#                 start = current
+#                 end = head
+            
+#             current = current.next
+#             count += 1
+        
+#         # for i in range(count-k-1):
+#         #     end = end.next
+        
+#         start.val, end.val = end.val, start.val
+#         return head
+
+# two pass
 class Solution:
     def swapNodes(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
-        swap1 = swap2 = head
-        for i in range(1, k):
-            swap1 = swap1.next
+        count = 1
+        start = end = head
+        current = head
+        while current:
+            if count == k:
+                start = current
+
+            current = current.next
+            count += 1
         
-        end = swap1
-        while end and end.next:
-            swap2 = swap2.next
+        for i in range(count-k-1):
             end = end.next
         
-        # print(end.val) end is already the last node, cause of the line"end=end.next"
-        if swap1 != swap2:
-            swap1.val, swap2.val = swap2.val, swap1.val
-        
+        start.val, end.val = end.val, start.val
         return head
+        
+
+
+# class Solution:
+#     def swapNodes(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+#         swap1 = swap2 = head
+#         for i in range(1, k):
+#             swap1 = swap1.next
+        
+#         end = swap1
+#         while end and end.next:
+#             swap2 = swap2.next
+#             end = end.next
+        
+#         # print(end.val) end is already the last node, cause of the line"end=end.next"
+#         if swap1 != swap2:
+#             swap1.val, swap2.val = swap2.val, swap1.val
+        
+#         return head
 
         
 
