@@ -61,7 +61,43 @@ class Solution:
             current = next
         return prev
 
-            
+#Could you do it in O(n) time and O(1) space?
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        if not head or not head.next:
+            return True
+        list_len = 0
+        current = head
+        while current:
+            list_len += 1
+            current = current.next
+        
+        mid = list_len //2
+        slow = fast = head
+        for i in range(mid):
+            fast = fast.next
+        fast = self.reversed_list(fast)
+
+        while fast:
+            # print("fast", fast.val)
+            if fast.val == slow.val:
+                fast = fast.next
+                slow = slow.next
+            else:
+                return False
+        return True
+    
+    def reversed_list(self, head):
+        if not head:
+            return None
+        prev = dummy_head = None
+        current = head
+        while current:
+            temp = current.next
+            current.next = prev
+            prev = current
+            current = temp
+        return prev
 
             
 

@@ -54,4 +54,27 @@ class Solution:
 # time complexity: O(n)
 
 # space complexity:O(1)
+
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummy_head = ListNode(None)
+        dummy_head.next = head
+        current = dummy_head
+        for i in range(n+1):
+            if current:
+                current = current.next
         
+        if not current:
+            return head.next
+
+        # if current: print("current", current.val)
+        slow = head
+        while current and current.next:
+            current = current.next
+            slow = slow.next
+        
+        if slow and slow.next: 
+            # print("slow", slow.val)
+            slow.next = slow.next.next
+
+        return head
