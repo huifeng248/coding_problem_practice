@@ -27,10 +27,10 @@ class Solution:
 # time complexity: O(n)
 # space complexity: O(n) 
 
-import heapq
-heapq.heapify(maxHeap)
-heapq.heappush(maxHeaq, count)
-Heapq.heappop(maxHeaq)
+# import heapq
+# heapq.heapify(maxHeap)
+# heapq.heappush(maxHeaq, count)
+# Heapq.heappop(maxHeaq)
 
 
 

@@ -5,6 +5,27 @@ class Node:
     self.right = None
 
 
+class Node:
+  def __init__(self, val):
+    self.val = val
+    self.left = None
+    self.right = None
+
+def all_tree_paths(root):
+  if not root:
+    return []
+  if not root.left and not root.right:
+    return [[root.val]]
+  left = all_tree_paths(root.left) 
+  right = all_tree_paths(root.right)
+  for i in range(len(left)):
+    path = left[i]
+    left[i] = [root.val] + path
+  for j in range(len(right)):
+    path = right[j]
+    right[j] = [root.val] + path
+  return left + right 
+
 
 def all_tree_paths(root):
   if root is None:
