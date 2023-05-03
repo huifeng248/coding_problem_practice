@@ -45,3 +45,24 @@ def max_path_sum(root):
 # n = number of nodes
 # Time: O(n)
 # Space: O(n)
+
+
+# this BFS cannot solve the the path question
+# def max_path_sum(root):
+#   stack = deque([[root,0]])
+#   arr = []
+#   while stack:
+#     current, level = stack.popleft()
+#     if level == len(arr):
+#       arr.append(current.val)
+#     else:
+#       temp = arr[level]
+#       arr[level] = max(temp, current.val)
+    
+#     if current.left:
+#       stack.append([current.left, level+1])
+#     if current.right:
+#       stack.append([current.right, level+1])
+#     print("arr", arr)
+#   return sum(arr)
+    
